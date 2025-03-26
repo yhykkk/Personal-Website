@@ -1,5 +1,9 @@
-# Vue 3 + Vite
+# Vue 3 + Vite Web Develop
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## Introduction
+This project is my first Vue 3 project. The tool chain used are html+css+js+vue3+vite.<br>
+The project is a web page for personal developer, the inspiration, especially css part come from some excellent project.
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+## History
+25/3/26 <br>
+add the login amination and structure
