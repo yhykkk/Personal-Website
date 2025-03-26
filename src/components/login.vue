@@ -56,7 +56,7 @@
         return false;
       }
       alert('登录成功！');
-      this.$router.push('/home');
+      this.$router.push('/page1');
     },
     handleMouseMove(event) {
       this.backgroundX = -event.clientX / 80;
