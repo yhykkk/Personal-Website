@@ -1,0 +1,144 @@
+@font-face {
+    font-family: 'Poppins';
+    src: url('../font.ttf') format('truetype');
+    }
+
+#login-form {
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.071);
+    width: 35%;
+    padding: 50px 10px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.39);
+    position:fixed;
+    right: 60%;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.087);
+}
+
+h1 {
+    font-size:2.5rem;
+    color: white;
+    margin: 0 0 20px;
+    font-family:"Poppins", sans-serif;
+    animation: reloadA 3s ease-out forwards;
+    opacity: 0;
+    animation-delay: 0.2s;
+}
+
+.input-wrap{
+    border: 1px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    height: 55px;
+    width: 90%;
+    border-radius: 50px;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.616);
+}
+
+.input-wrap  i{
+    font-size: 1.2rem;
+    color: white;
+    padding-right: 25px;
+}
+
+input{
+    background-color: transparent;
+    font-size:1.2rem;
+    color:white;
+    padding:5px 25px;
+    border: none;
+    outline: none;
+}
+input::placeholder{
+    font-size: 1.2rem;
+    color: white;
+    padding-right: 25px;
+}
+
+.rem{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    animation: reloadA 5s ease-out forwards;
+    opacity: 0;
+    animation-delay: 0.5s;
+}
+
+.rem a,
+.rem p{
+    font-size: 1.2rem;
+    color:white;
+}
+
+button{
+    font-size:1.2rem;
+    height: 60px;
+    width: 90%;
+    border-radius: 50px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: 0.2s;
+    border: none;
+    animation: reloadA 5s ease-out forwards;
+    opacity: 0;
+    animation-delay: 0.5s;
+}
+
+button:hover{
+    background-color: rgba(255, 255, 255, 0.685);
+}
+
+.reg{
+    font-size:1.2rem;
+    color: white;
+    margin-bottom: 10px;
+    animation: reloadA 5s ease-out forwards;
+    opacity: 0;
+    animation-delay: 0.5s;
+}
+
+reg a{
+    font-weight: 500;
+    color:white;
+}
+
+body::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.144);
+    z-index: -1;
+}
+
+.in1{
+    animation: reloadA 4s ease-out forwards;
+    opacity: 0;
+    animation-delay: 0.3s;
+}
+
+.in2{
+    animation: reloadA 5s ease-out forwards;
+    opacity: 0;
+    animation-delay: 0.4s;
+}
+
+@keyframes reloadA{
+    from {
+        transform: rotate(250px);
+    }
+    to {
+        transform: rotate(0px);
+        opacity: 1;
+    }
+}
