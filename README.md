@@ -7,6 +7,6 @@ The project is a web page for personal developer, the inspiration, especially cs
 ## History
 25/3/26 <br>
 add the login amination and structure <br>
-add the pages for main content
-25/3/27
-1.00 Version finished
+add the pages for main content<br>
+25/3/27<br>
+1.00 Version finished<br>
