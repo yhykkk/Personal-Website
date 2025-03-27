@@ -5,6 +5,7 @@ import Page2 from '../components/page2.vue';
 import Page4 from '../components/page4.vue';
 import Page5 from '../components/page5.vue';
 
+
 const routes = [
   { path: '/', component: Login }, 
   { path: '/page1', component: Page1 },

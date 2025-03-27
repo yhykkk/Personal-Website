@@ -4,6 +4,7 @@
         <h3>The Land of Serene Beauty</h3>
         <h1>Kerala</h1>
       </div>
+      <div class="about-content">
       <header>
     <nav>
       <a class="nav-items" @click="$router.push('page1')">Home</a>
@@ -14,18 +15,44 @@
     </nav>
   </header>
       <img :src="image2" alt="background" class="back-2">
-      <div class="info-wrap">
+          <!-- 个人简介 -->
+    <section class="profile">
+      <div class="profile-pic">
+        <img :src="image4" alt="Profile Picture" />
+      </div>
+      <div class="profile-text">
+        <h1 >About Me</h1>
         <p>
-          This is the homepage of yhykkk
+          我是yhykkk，一名个人开发者，热爱探索新技术，设计有意思的小项目。欢迎了解我的软件技能与兴趣爱好！
         </p>
       </div>
-  
-      <div class="cta">
-        <button>
-          Explore More
-          <i class="fa-solid fa-arrow-right"></i>
-        </button>
+    </section>
+
+    <!-- 软件技能 -->
+    <section class="skills">
+      <h2>Software Skills</h2>
+      <div class="skills-grid">
+        <div class="skill" v-for="skill in skills" :key="skill.name">
+          <i :class="skill.icon"></i>
+          <p>{{ skill.name }}</p>
+        </div>
       </div>
+    </section>
+
+    <!-- 兴趣爱好 -->
+    <section class="hobbies">
+    <h2>Platforms</h2>
+    <div class="hobbies-grid">
+      <div class="hobby" v-for="platform in platforms" :key="platform.name">
+        <a :href="platform.url" target="_blank" rel="noopener noreferrer">
+          <i :class="platform.icon"></i>
+          <p>{{ platform.name }}</p>
+        </a>
+      </div>
+    </div>
+  </section>
+  </div>
+   
   
       <div class="slider">
         <i class="fa-solid fa-chevron-left"></i>
@@ -42,6 +69,24 @@
         image1: new URL('../assets/pic1.jpg', import.meta.url).href,
         image2: new URL('../assets/home2.jpg', import.meta.url).href,
         image3: new URL('../assets/home.jpg', import.meta.url).href,
+        image4: new URL('../assets/figure4.jpg', import.meta.url).href,
+        // 个人简介图片，可替换为自己的头像
+      profileImage: new URL('../assets/profile.jpg', import.meta.url).href,
+      // 示例技能数组（注意：需在项目中引入 FontAwesome 库或替换成其他图标方案）
+      skills: [
+        { name: 'C', icon: 'fab fa-c' },
+        { name: 'Vue.js', icon: 'fab fa-vuejs' },
+        { name: 'Python', icon: 'fab fa-python' },
+        { name: 'CSS3', icon: 'fab fa-css3-alt' },
+        { name: 'HTML5', icon: 'fab fa-html5' }
+      ],
+      // 示例兴趣爱好数组
+      platforms: [
+        { name: 'Github', icon: 'fab fa-github', url: 'https://github.com/yhykkk' },
+        { name: 'Bilibili', icon: 'fab fa-bilibili', url: 'https://b23.tv/OoV97Fl' },
+        { name: 'Steam', icon: 'fab fa-steam', url: 'https://steamcommunity.com/your-profile' },
+        { name: 'Wechat', icon: 'fab fa-weixin', url: 'https://weixin.qq.com/' }
+      ]
       };
     }
   };
@@ -77,12 +122,6 @@ body::after {
 }
 
 /* Background-images */
-
-.content img {
-  position: absolute;
-  bottom: -12%;
-}
-
 header {
   position: absolute;
   top: 0;
@@ -321,5 +360,153 @@ nav {
 .slider {
   animation: zoomOut 1.2s ease-out forwards;
 }
+
+.about-content {
+  position: relative;
+  padding: 20px;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+}
+
+/* 导航栏样式 */
+header {
+  margin-bottom: 20px;
+}
+
+/* 个人简介区域 */
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 40px;
+  animation: fadeInUp 1s ease-out forwards;
+}
+.profile-pic img {
+  position: relative; /* 或者直接不设置 position */
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #7e7fc0;
+}
+.profile-text h1 {
+  position: relative;
+  left:560px;
+  top:80px;
+  text-align: center;
+  font-size: 2.8rem;
+  margin-bottom: 10px;
+  color: #e0dbdb;
+}
+.profile-text p {
+  position: relative;
+  left:700px;
+  top:100px;
+  font-size: 1.2rem;
+  color: #f7f4f4;
+  line-height: 1.6;
+}
+
+/* 软件技能区域 */
+.skills {
+  position: relative;
+  top:100px;
+  margin-bottom: 40px;
+  animation: fadeIn 1.2s ease-out forwards;
+}
+.skills h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2rem;
+  color: #333;
+}
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 20px;
+}
+.skill {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+.skill:hover {
+  transform: translateY(-5px);
+}
+.skill i {
+  font-size: 2rem;
+  color: #7e7fc0;
+  margin-bottom: 10px;
+}
+.skill p{
+  position: relative;
+  left:40px;
+  color:#7e7fc0;
+}
+
+/* 兴趣爱好区域 */
+.hobbies {
+  position: relative;
+  top:100px;
+  animation: fadeIn 1.4s ease-out forwards;
+}
+.hobbies h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2rem;
+  color: #333;
+}
+
+.hobbies p{
+  position: relative;
+  left:50px;
+  color:#7e7fc0;
+}
+
+.hobbies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 20px;
+}
+.hobby {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+.hobby:hover {
+  transform: translateY(-5px);
+}
+.hobby i {
+  font-size: 2rem;
+  color: #7e7fc0;
+  margin-bottom: 10px;
+}
+
+/* 动画效果 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
   </style>
   

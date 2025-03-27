@@ -1,9 +1,5 @@
 <template>
     <div class="content">
-      <div class="title">
-        <h3>The Land of Serene Beauty</h3>
-        <h1>Kerala</h1>
-      </div>
       <header>
     <nav>
       <a class="nav-items"  @click="$router.push('page1')">Home</a>
@@ -13,23 +9,11 @@
       <a class="nav-items" @click="$router.push('../')">Log out</a>
     </nav>
   </header>
-      <img :src="image2" alt="background" class="back-2">
-      <div class="info-wrap">
-        <p>
-          This is the homepage of yhykkk
-        </p>
-      </div>
-  
-      <div class="cta">
-        <button>
-          Explore More
-          <i class="fa-solid fa-arrow-right"></i>
-        </button>
-      </div>
+      <img :src="slides[currentSlide].src" alt="background" class="back-2" :style="{ transform: `translateX(${translateX}%)` }">
   
       <div class="slider">
-        <i class="fa-solid fa-chevron-left"></i>
-        <i class="fa-solid fa-chevron-right"></i>
+        <i class="fa-solid fa-chevron-left" @click="prevSlide"></i>
+        <i class="fa-solid fa-chevron-right" @click="nextSlide"></i>
       </div>
     </div>
   </template>
@@ -39,60 +23,38 @@
     name: "Page1",
     data() {
       return {
-        image1: new URL('../assets/pic1.jpg', import.meta.url).href,
-        image2: new URL('../assets/pic5.jpg', import.meta.url).href,
-        image3: new URL('../assets/home.jpg', import.meta.url).href,
+        currentSlide: 0,
+        slides: [
+        {src:new URL('../assets/pic5.jpg', import.meta.url).href} ,
+        {src:new URL('../assets/gallery1.png', import.meta.url).href} ,
+        {src:new URL('../assets/gallery2.png', import.meta.url).href} ,
+        {src:new URL('../assets/gallery3.png', import.meta.url).href} ,
+        {src:new URL('../assets/gallery4.png', import.meta.url).href} ,
+      ],
       };
+    },
+
+    computed: {
+    translateX() {
+      return -this.currentSlide * 100
     }
+  },
+
+  methods: {
+    nextSlide() {
+      this.transitionName = 'slide-next'
+      this.currentSlide = (this.currentSlide + 1) % this.slides.length
+    },
+    prevSlide() {
+      this.transitionName = 'slide-prev'
+      this.currentSlide = (this.currentSlide - 1 + this.slides.length) % this.slides.length
+    }
+  }
   };
   </script>
   
   <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-
-* {
-  padding: 0;
-  margin: 0;
-  border: none;
-  outline: none;
-  font-family: "Inter", sans-serif;
-}
-
-body {
-  background-image: url(img/bac\ 4.png);
-  background-size: cover;
-  background-position: top;
-  background-repeat: no-repeat;
-  overflow: hidden;
-}
-
-body::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  background: linear-gradient(transparent 50%, rgb(0, 0, 0));
-}
-
-/* Background-images */
-
-.content img {
-  position: absolute;
-  bottom: -12%;
-}
-
-header {
-  position: absolute;
-  top: 0;
-  z-index: 1;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 nav {
   display: flex;
   align-items: center;
@@ -220,11 +182,21 @@ p {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  animation: zoomOut 1.2s ease-out forwards;
+  z-index: 999
 }
 .slider i {
   padding: 0 5%;
   font-size: 36px;
   color: rgba(255, 255, 255, 0.4);
+  cursor: pointer; 
+  transition: all 0.3s;
+  position: relative; 
+}
+
+.slider i:hover {
+  color: rgba(255, 255, 255, 0.8);
+  transform: scale(1.2);
 }
 
 /* Animations */
@@ -235,36 +207,6 @@ p {
   to {
     transform: translateY(0);
   }
-}
-
-.back-1 {
-  animation: bottomIn 1s ease-out forwards;
-}
-
-.back-2 {
-  animation: bottomIn 1.3s ease-out forwards;
-}
-
-.back-3 {
-  animation: bottomIn 1.5s ease-out forwards;
-}
-
-@keyframes bottomInText {
-  from {
-    transform: translateY(500px);
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-h3 {
-  animation: bottomInText 1s ease-out forwards;
-}
-
-h1 {
-  animation: bottomInText 1.2s ease-out forwards;
 }
 
 p {
@@ -279,47 +221,65 @@ button {
   opacity: 0;
 }
 
-@keyframes backgroundImage {
-  from {
-    background-position: top;
-  }
-  to {
-    background-position: 50% 14%;
-  }
-}
 
 body {
   animation: backgroundImage 1.6s ease-out forwards;
 }
 
-@keyframes topIn {
-  from {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
 
 nav {
   animation: topIn 1.2s ease-out forwards;
 }
 
-@keyframes zoomOut{
-  from {
-    transform: scale(1.5);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
+
+.back-2 {
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
 }
 
-.slider {
-  animation: zoomOut 1.2s ease-out forwards;
+/* 方向感知动画 */
+.slide-next-enter-active {
+  animation: slideInRight 0.8s;
+}
+.slide-prev-enter-active {
+  animation: slideInLeft 0.8s;
+}
+
+
+.content {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.slider-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top; 
+  top: 0; 
+  left: 0;
+  transform: translateX(var(--translate-x)); /* 使用CSS变量更规范 */
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+
+.back-2 {
+  position: absolute;
+  width: 100%;
+  object-fit: cover;
+
+  will-change: transform;
+  bottom: 100px; 
+  transform-style: preserve-3d; 
+}
+
+@media (max-width: 768px) {
+  .back-2 {
+    object-position: center center; 
+  }
 }
   </style>
   

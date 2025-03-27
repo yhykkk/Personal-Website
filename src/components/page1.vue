@@ -19,7 +19,29 @@
           This is the homepage of yhykkk
         </p>
       </div>
-  
+      <section class="sec">
+        <a href="page2">
+            <div class="part1 pt">
+                <div class="imghid"></div>
+                <div class="txt">
+                    <h1>嗨咯呀</h1>
+                    <p>这里是yhykkk的主页<br><br>
+                    我就读于电子科技大学的电子信息专业是一个爱好电子和软件设计开发的大二学生<br><br>
+                    业余会提交一些嵌入式开发,数字IC设计和一些软件学习项目
+                    平时会尽量更新一些自己写的博客希望对大家有帮助
+                    </p>
+                </div>
+            </div>
+        </a>
+    </section>
+      <div class="type-wrap">
+      <v-row align="center">
+            <v-col cols="12" md="8">
+              <typewriter class="ma-3 d-flex align-center justify-center" style="min-height: 200px;"></typewriter>
+            </v-col>
+            <v-col cols="12" md="4" align="center"></v-col>
+        </v-row> 
+      </div>
       <div class="cta">
         <button>
           Explore More
@@ -35,13 +57,16 @@
   </template>
   
   <script>
+  import typewriter from '../components/typewriter.vue';
   export default {
     name: "Page1",
+    components: { typewriter },
     data() {
       return {
         image1: new URL('../assets/pic1.jpg', import.meta.url).href,
         image2: new URL('../assets/pic2.jpg', import.meta.url).href,
         image3: new URL('../assets/home.jpg', import.meta.url).href,
+        image4: new URL('../assets/figure2.jpg', import.meta.url).href,
       };
     }
   };
@@ -170,6 +195,15 @@ p {
   width: 70%;
   text-align: center;
   text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+.type-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 5%;
+  z-index: 1;
 }
 
 .info-wrap {
@@ -321,5 +355,74 @@ nav {
 .slider {
   animation: zoomOut 1.2s ease-out forwards;
 }
+
+
+
+
+.sec{
+    position: absolute;
+    bottom: 75px;
+    left: 1000px;
+    height: 100vh;
+    width: 100vw;
+    scroll-snap-align: start;
+}
+
+.pt{
+    display: flex;
+    flex-direction: column;
+    height: 600px;
+    width: 500px;
+    float: left;
+    margin: 150px 0px 0px 105px;
+    background: rgba(244, 246, 247, 0.356);
+    box-shadow: 0 0 15px rgba(59, 73, 95, 0.76);
+    border-radius: 15px;
+    overflow: hidden;
+    scroll-snap-align: start;
+    transition: all 0.5s ease 0s;
+}
+.pt:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.imghid{
+    overflow: hidden;
+}
+.part1 .img{
+    background-image : "figure1";
+}
+
+
+
+.pt .txt{
+    height: 500px;
+    width: 500px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    
+}
+
+.pt .txt h1{
+    text-align: center;
+    font-size: 3em;
+    color: rgb(28, 44, 68);
+    height: 30px;
+    line-height: 50px;
+}
+
+.pt .txt p{
+    width: 300px; /* 或者其他合适的宽度 */
+    margin: auto; /* 确保容器本身在父容器中居中 */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 垂直居中对齐 */
+    font-size: 1.2em;
+    color:rgb(248, 246, 246);
+}
+
   </style>
   
